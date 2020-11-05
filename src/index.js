@@ -1,4 +1,5 @@
 const express = require('express')
+const database = require('./database')
 const cors = require('cors')
 const { port } = require('./config')
 
@@ -6,7 +7,7 @@ const { port } = require('./config')
 const api = express()
 
 //PostgreSQL Connection
-
+database.connection()
 
 // Body Parser
 api.use(express.json({ extended: true, limit: '5mb'}))
