@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "backend-bas-ulzahk",
+  "builds": [
+    {
+      "use": "@vercel/node",
+      "src": "src/index.js"
+    }
+  ],
+  "routes": [{
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+    },
+    "src": "/.*", "dest": "src/index.js"
+  }]
+}
