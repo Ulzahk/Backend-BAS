@@ -29,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/Ulzahk/Backend-BAS/issues"
   },
-  "homepage": "https://github.com/Ulzahk/Backend-BAS#readme"
+  "homepage": "https://github.com/Ulzahk/Backend-BAS#readme",
+  "eslintConfig":{
+    "extents": [
+      "./node_modules/standard/eslintrc.json"
+    ]
+  }
 }
