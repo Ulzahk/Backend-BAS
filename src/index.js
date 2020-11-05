@@ -4,7 +4,7 @@ const express = require('express')
 const api = express()
 
 api.get('/', (req, res) => {
-  res.send('It\'s working')
+  res.send(`Server Status: [🟢 Online]\nFor more information visit: https://github.com/Ulzahk/Backend-BAS`)
 })
 
 const server = api.listen(3000, (req, res) =>{
