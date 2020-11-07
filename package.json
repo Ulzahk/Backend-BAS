@@ -1,5 +1,5 @@
 {
-  "name": "Backend-BAS",
+  "name": "backend-bas",
   "version": "1.0.0",
   "description": "Backend Basic Authentication System",
   "main": "index.js",

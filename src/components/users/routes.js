@@ -7,7 +7,6 @@ const ApiUser = (api) => {
   router.get('/', async (req, res, next) => {
     try {
       const users = await usersController.getUsers()
-      console.log(users)
       res.status(200).json({
         message: 'Users listed',
         total_results: users.length,
@@ -22,7 +21,7 @@ const ApiUser = (api) => {
     try {
       const user = await usersController.getOneUser(req.params.userId)
       res.status(200).json({
-        message: `User ${req.params.userId} listed`,
+        message: `User with ID:${req.params.userId} listed`,
         result: user
       })
     } catch (error) {
@@ -46,16 +45,34 @@ const ApiUser = (api) => {
     }
   })
 
+  router.put('/:userId', async (req, res, next) => {
+    try {
+      const userId = req.params.userId
+      const user = req.body
+      const userUpdated = await usersController.updateUser(userId, user)
+      if(userUpdated !== 0) {
+        res.status(200).json({
+          message: `User with ID:${userId} updated`
+        })
+      } else {
+        res.status(406).json({
+          message: `Error updating user with ID:${userId}`
+        })
+      }
+    } catch (error) {
+      next(error)
+    }
+  })
   router.delete('/:userId', async (req, res, next) => {
     try {
-      const users = await usersController.deleteUser(req.params.userId)
-      if (users !== 0) {
+      const userDeleted = await usersController.deleteUser(req.params.userId)
+      if (userDeleted !== 0) {
         res.status(201).json({
           message: `User ${req.params.userId} deleted`
         })
       } else {
         res.status(406).json({
-          message: `Error deleting user ${req.params.userId}`
+          message: `Error deleting user with ID:${req.params.userId}`
         })
       }
     } catch (error) {
