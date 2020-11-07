@@ -32,4 +32,4 @@ const connection = async (cb) => {
   }
 }
 
-module.exports = { connection }
+module.exports = { connection, client }
