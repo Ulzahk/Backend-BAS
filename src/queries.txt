@@ -8,10 +8,19 @@ CREATE TABLE users (
  confirmed_email boolean
 )
 
+SELECT * FROM users
+
+SELECT * FROM users WHERE user_id=1
+
 INSERT INTO users(username, password, email, firstname, lastname, confirmed_email) VALUES 
 ('peperamirez', '123456*', 'peper@gmail.com', 'Pepe', 'Ramirez', false )
 
 INSERT INTO users(username, password, email, firstname, lastname) VALUES 
 ('mariarodriguez', '123456*', 'mariar@gmail.com', 'Maria', 'Rodriguez' )
 
-SELECT * FROM users
+UPDATE users 
+SET username='peperamirez', password='123456789*', email='peper@gmail.com', firstname='Pepe', lastname='Ramirez' 
+WHERE user_id=${userId}
+
+
+DELETE FROM users WHERE user_id=1

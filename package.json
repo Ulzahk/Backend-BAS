@@ -1,7 +1,7 @@
 {
   "name": "backend-bas",
   "version": "1.0.0",
-  "description": "Backend Basic Authentication System",
+  "description": "API structure for a Basic Authentication System",
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.0.0",
