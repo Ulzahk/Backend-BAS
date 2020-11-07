@@ -20,13 +20,13 @@ const getOneUser = async (userId) => {
 }
 
 const createUser = async (user) => {
-  let {username, password, email, firstname, lastname } = user
+  const { username, password, email, firstname, lastname } = user
   try {
-    let encriptedPassword = await bcrypt.hash (password, 10)
-    let lowerCaseEmail = email.toLowerCase()
+    const encriptedPassword = await bcrypt.hash(password, 10)
+    const lowerCaseEmail = email.toLowerCase()
     const confirmed_email = false
     const user = await client
-    .query(`INSERT INTO users 
+      .query(`INSERT INTO users 
     (username, password, email, firstname, lastname, confirmed_email) VALUES 
     ('${username}', '${encriptedPassword}', '${lowerCaseEmail}','${firstname}', '${lastname}', ${confirmed_email})`)
     return user.rowCount
@@ -36,12 +36,12 @@ const createUser = async (user) => {
 }
 
 const updateUser = async (userId, user) => {
-  let {username, password, email, firstname, lastname } = user
+  const { username, password, email, firstname, lastname } = user
   try {
-    let lowerCaseEmail = email.toLowerCase()
-    let encriptedPassword = await bcrypt.hash(password, 10)
+    const lowerCaseEmail = email.toLowerCase()
+    const encriptedPassword = await bcrypt.hash(password, 10)
     const userUpdated = await client
-    .query(`UPDATE users 
+      .query(`UPDATE users 
     SET username='${username}', password='${encriptedPassword}', email='${lowerCaseEmail}', firstname='${firstname}', lastname='${lastname}' 
     WHERE user_id=${userId}`)
     return userUpdated.rowCount

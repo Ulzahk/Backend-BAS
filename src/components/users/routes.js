@@ -31,13 +31,13 @@ const ApiUser = (api) => {
   router.post('/', async (req, res, next) => {
     try {
       const userCreated = await usersController.createUser(req.body)
-      if(userCreated === 1){
+      if (userCreated === 1) {
         res.status(201).json({
-          message: `User created`
+          message: 'User created'
         })
       } else {
         res.status(502).json({
-          message: `Error creating user`
+          message: 'Error creating user'
         })
       }
     } catch (error) {
@@ -50,7 +50,7 @@ const ApiUser = (api) => {
       const userId = req.params.userId
       const user = req.body
       const userUpdated = await usersController.updateUser(userId, user)
-      if(userUpdated !== 0) {
+      if (userUpdated !== 0) {
         res.status(200).json({
           message: `User with ID:${userId} updated`
         })

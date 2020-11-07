@@ -1,5 +1,6 @@
 const express = require('express')
 const database = require('./database')
+const debug = require('debug')('api:server')
 const cors = require('cors')
 const { port } = require('./config')
 const ApiUser = require('./components/users/routes')
@@ -7,16 +8,16 @@ const ApiUser = require('./components/users/routes')
 // API
 const api = express()
 
-//PostgreSQL Connection
+// PostgreSQL Connection
 database.connection()
 
 // Body Parser
-api.use(express.json({ extended: true, limit: '5mb'}))
+api.use(express.json({ extended: true, limit: '5mb' }))
 
-//Cors
+// Cors
 api.use(cors())
 
-//Routes
+// Routes
 ApiUser(api)
 
 api.get('/', (req, res) => {
@@ -24,5 +25,5 @@ api.get('/', (req, res) => {
 })
 
 const server = api.listen(port, () => {
-  console.log(`Server listening at http://localhost:${server.address().port}`)
+  debug(`Server listening at http://localhost:${server.address().port}`)
 })
