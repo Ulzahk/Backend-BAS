@@ -21,7 +21,19 @@ api.use(cors())
 ApiUser(api)
 
 api.get('/', (req, res) => {
-  res.send('Server Status: [🟢 Online]\nFor more information visit: https://github.com/Ulzahk/Backend-BAS')
+  res.send(`
+  <div style="text-align: center;">
+    <p>
+      Server Status: [🟢 Online]
+    </p>
+    <p>
+      For more information visit: 
+      <a href='https://github.com/Ulzahk/Backend-BAS' alt='Link to Backed-BAS Repository' target='_blank'>
+        https://github.com/Ulzahk/Backend-BAS
+      </a>
+    </p>
+  </div>
+  `)
 })
 
 const server = api.listen(port, () => {
