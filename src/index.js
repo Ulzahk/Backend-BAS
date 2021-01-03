@@ -1,9 +1,10 @@
-const express = require('express')
-const database = require('./database')
-const debug = require('debug')('api:server')
+const express = require('express');
+const database = require('./config/database')
+const debug = require('debug')('api:server');
 const cors = require('cors')
-const { port } = require('./config')
-const ApiUser = require('./components/users/routes')
+const { port } = require('./config/env-variables');
+//const ApiUser = require('./components/users/routes');
+const userAPI = require('./api/routes/UsersRoutes');
 
 // API
 const api = express()
@@ -18,8 +19,8 @@ api.use(express.json({ extended: true, limit: '5mb' }))
 api.use(cors())
 
 // Routes
-ApiUser(api)
-
+//ApiUser(api)
+userAPI(api);
 api.get('/', (req, res) => {
   res.send(`
   <div style="text-align: center;">
@@ -36,6 +37,7 @@ api.get('/', (req, res) => {
   `)
 })
 
+// Server
 const server = api.listen(port, () => {
   debug(`Server listening at http://localhost:${server.address().port}`)
 })

@@ -1,4 +1,4 @@
-const { client } = require('../../database')
+const { client } = require('../../config/database')
 const bcrypt = require('bcrypt')
 
 const getUsers = async () => {
