@@ -1,6 +1,6 @@
 const pg = require('pg')
 const debug = require('debug')('pg:connection')
-const { dbUrl } = require('./config')
+const { dbUrl } = require('./env-variables')
 
 const client = new pg.Client(dbUrl)
 const connection = async (cb) => {
@@ -18,4 +18,4 @@ const connection = async (cb) => {
   }
 }
 
-module.exports = { connection, client }
+module.exports = { connection, client };

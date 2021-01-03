@@ -1,9 +1,10 @@
-const express = require('express')
-const database = require('./database')
-const debug = require('debug')('api:server')
+const express = require('express');
+const database = require('./config/database')
+const debug = require('debug')('api:server');
 const cors = require('cors')
-const { port } = require('./config')
-const ApiUser = require('./components/users/routes')
+const { port } = require('./config/env-variables');
+//const ApiUser = require('./components/users/routes');
+const userAPI = require('./api/routes/UsersRoutes');
 
 // API
 const api = express()
@@ -18,12 +19,25 @@ api.use(express.json({ extended: true, limit: '5mb' }))
 api.use(cors())
 
 // Routes
-ApiUser(api)
-
+//ApiUser(api)
+userAPI(api);
 api.get('/', (req, res) => {
-  res.send('Server Status: [🟢 Online]\nFor more information visit: https://github.com/Ulzahk/Backend-BAS')
+  res.send(`
+  <div style="text-align: center;">
+    <p>
+      Server Status: [🟢 Online]
+    </p>
+    <p>
+      For more information visit: 
+      <a href='https://github.com/Ulzahk/Backend-BAS' alt='Link to Backed-BAS Repository' target='_blank'>
+        https://github.com/Ulzahk/Backend-BAS
+      </a>
+    </p>
+  </div>
+  `)
 })
 
+// Server
 const server = api.listen(port, () => {
   debug(`Server listening at http://localhost:${server.address().port}`)
 })

@@ -11,7 +11,7 @@
   [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-F2F2F2?style=flat&logo=postgresql&logoColor=336791)](https://www.postgresql.org/)
 </div>
 
-<p align="center">Basic Authentication System API is a support structure that aims to provide the routes, data and other means of connection to achieve the BAS APP's functionality.</p>
+<p align="center">Basic Authentication System API is a structure that aims to provide the routes, data and other means of connection to achieve the BAS APP's functionality.</p>
 
 
 <div align="center">
