@@ -79,6 +79,10 @@ class UsersController{
       next(error)
     }
   }
+
+  async loginUser (req, res, nexr){
+    
+  }
 }
 
 module.exports = UsersController;

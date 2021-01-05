@@ -3,7 +3,6 @@ const database = require('./config/database')
 const debug = require('debug')('api:server');
 const cors = require('cors')
 const { port } = require('./config/env-variables');
-//const ApiUser = require('./components/users/routes');
 const userAPI = require('./api/routes/UsersRoutes');
 
 // API
@@ -19,8 +18,8 @@ api.use(express.json({ extended: true, limit: '5mb' }))
 api.use(cors())
 
 // Routes
-//ApiUser(api)
 userAPI(api);
+authAPI(api);
 api.get('/', (req, res) => {
   res.send(`
   <div style="text-align: center;">
