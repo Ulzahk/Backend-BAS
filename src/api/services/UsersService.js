@@ -50,6 +50,16 @@ class UsersService {
     }
   }
 
+  async getUserByEmail({ email }){
+    try {
+      const lowerCaseEmail = email.toLowerCase()
+      const user = await client.query(`SELECT * FROM ${this.table} WHERE email='${lowerCaseEmail}'`)
+      return user.rows[0] || [];
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   async updateUser({ userId, user }){
     const { username, password, email, fullName} = user
     try {
