@@ -4,6 +4,7 @@ const debug = require('debug')('api:server');
 const cors = require('cors')
 const { port } = require('./config/env-variables');
 const userAPI = require('./api/routes/UsersRoutes');
+const authAPI = require('./api/routes/AuthRoutes');
 
 // API
 const api = express()

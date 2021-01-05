@@ -1,6 +1,9 @@
 const UsersService = require('../services/UsersService');
+const JWTAuthenticationService = require('../services/AuthService');
+const bcrypt = require('bcrypt');
 
 const usersService = new UsersService();
+const jwtAuthenticationService =  new JWTAuthenticationService();
 
 class UsersController{
   async createUser(req, res, next){
@@ -67,7 +70,7 @@ class UsersController{
     try {
       const userDeleted = await usersService.deleteUser({userId});
       if (userDeleted !== 0) {
-        res.status(201).json({
+        res.status(200).json({
           message: `User ${req.params.userId} deleted`
         })
       } else {
@@ -75,13 +78,35 @@ class UsersController{
           message: `Error deleting user with ID:${req.params.userId}`
         })
       }
-    } catch (error) {
-      next(error)
+    } catch (err) {
+      next(err)
     }
   }
 
-  async loginUser (req, res, nexr){
-    
+  async loginUser (req, res, next){
+    const { email, password } = req.body;
+    try {
+      if(!email || !password){
+        res.status(401).send('Invalid information');
+      }
+
+      const user = await usersService.getUserByEmail({email});
+      if(!user){
+        res.status(401).send('Invalid information');
+      }
+
+      const comparedPassword = await bcrypt.compare(password, user.password);
+      if(comparedPassword){
+        const token = jwtAuthenticationService.JWTIssuer({user: user.id}, '15 min');
+        res.status(200).json({
+          token: token
+        })
+      } else {
+        res.status(401).send('Invalid information');
+      }
+    } catch (err) {
+      next(err)
+    }
   }
 }
 
