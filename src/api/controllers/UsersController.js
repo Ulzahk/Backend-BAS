@@ -22,10 +22,10 @@ class UsersController{
   async listUsers(req, res, next){
     try {
       const users = await usersService.getUsers();
-      const totalUsers = users.length.toString();
+      const totalRecords = users.length.toString();
       res.status(200).json({
         message: 'Users listed',
-        totalUsers: totalUsers,
+        totalRecords: totalRecords,
         users: users
       })
     } catch (err) {

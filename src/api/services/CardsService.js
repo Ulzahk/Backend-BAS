@@ -4,16 +4,17 @@ const { v4: uuid }  = require('uuid');
 class CardsService{
   constructor(){
     this.table = 'cards'
-    this.fields = 'id, card_name, card_image, description, price'
+    this.fields = 'id, user_Id card_name, card_image, description, price'
   }
 
   async createCard({ card }){
-    const { cardName, cardImage, description, price } = card;
+    const { cardName, userId, cardImage, description, price } = card;
     try {
       const id = uuid();
       const cardCreated = await client.query(
         `INSERT INTO ${this.table}(${this.fields}) VALUES (
-          '${id}'
+          '${id}',
+          '${userId}'
           '${cardName}',
           '${cardImage}',
           '${description}',
@@ -49,6 +50,7 @@ class CardsService{
     try {
       const cardUpdated = await client.query(
         `UPDATE ${this.table} SET
+        user_id='${userId}',
         card_name='${cardName}',
         card_image='${cardImage}',
         description='${description}',
