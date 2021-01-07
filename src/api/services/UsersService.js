@@ -2,7 +2,6 @@ const { client } = require('../../config/database');
 const { v4: uuid }  = require('uuid');
 const bcrypt = require('bcrypt');
 
-
 class UsersService {
   constructor(){
     this.table = 'users',
