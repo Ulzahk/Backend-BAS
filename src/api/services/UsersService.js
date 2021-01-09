@@ -78,9 +78,9 @@ class UsersService {
   async deleteUser({ userId }){
     try {
       const userDeleted = await client.query(`DELETE FROM ${this.table} WHERE id='${userId}'`)
-      return userDeleted.rowCount
+      return userDeleted.rowCount;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 }

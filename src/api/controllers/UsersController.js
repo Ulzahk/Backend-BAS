@@ -71,11 +71,11 @@ class UsersController{
       const userDeleted = await usersService.deleteUser({userId});
       if (userDeleted !== 0) {
         res.status(200).json({
-          message: `User ${req.params.userId} deleted`
+          message: `User ${userId} deleted`
         })
       } else {
         res.status(406).json({
-          message: `Error deleting user with ID:${req.params.userId}`
+          message: `Error deleting user with ID:${userId}`
         })
       }
     } catch (err) {

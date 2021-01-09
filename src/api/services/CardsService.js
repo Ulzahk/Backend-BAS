@@ -4,17 +4,17 @@ const { v4: uuid }  = require('uuid');
 class CardsService{
   constructor(){
     this.table = 'cards'
-    this.fields = 'id, user_Id card_name, card_image, description, price'
+    this.fields = 'id, user_id, card_name, card_image, description, price'
   }
 
   async createCard({ card }){
-    const { cardName, userId, cardImage, description, price } = card;
+    const { userId, cardName, cardImage, description, price } = card;
     try {
       const id = uuid();
       const cardCreated = await client.query(
         `INSERT INTO ${this.table}(${this.fields}) VALUES (
           '${id}',
-          '${userId}'
+          '${userId}',
           '${cardName}',
           '${cardImage}',
           '${description}',
@@ -30,7 +30,7 @@ class CardsService{
   async getCards(){
     try {
       const cards = await client.query(`SELECT * FROM ${this.table}`);
-      return cards || [];
+      return cards.rows || [];
     } catch (err) {
       console.error(err)
     }
@@ -46,7 +46,7 @@ class CardsService{
   }
 
   async updateCard({ cardId, card }){
-    const { cardName, cardImage, description, price } = card
+    const { userId, cardName, cardImage, description, price } = card
     try {
       const cardUpdated = await client.query(
         `UPDATE ${this.table} SET
@@ -66,7 +66,7 @@ class CardsService{
   async deleteCard({ cardId }){
     try {
       const cardDeleted = await client.query(`DELETE FROM ${this.table} WHERE id='${cardId}'`);
-      return cardDeleted
+      return cardDeleted.rowCount;
     } catch (error) {
       console.error(err);
     }
