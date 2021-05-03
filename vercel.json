@@ -11,7 +11,7 @@
     "headers": {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+      "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept, BearerToken"
     },
     "src": "/.*", "dest": "src/index.js"
   }]
