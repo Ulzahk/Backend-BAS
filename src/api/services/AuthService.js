@@ -7,11 +7,19 @@ class JWTAuthenticationService {
   }
 
   JWTIssuer(payload, expiresIn){
-    return jwt.sign(payload, this.secret, {expiresIn});
+    try {
+      return jwt.sign(payload, this.secret, {expiresIn});
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   JWTVerify(token){
-    return jwt.verify(token, this.secret);
+    try {
+      return jwt.verify(token, this.secret);
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

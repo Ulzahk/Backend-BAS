@@ -14,7 +14,7 @@ const usersAPI = (api) => {
   router.get('/', usersController.listUsers);
 
   // List An User
-  router.get('/:userId', usersController.listUserById);
+  router.get('/user-data', usersController.listUserById);
 
   // Update An User
   router.put('/:userId', usersController.updateUser);
