@@ -113,7 +113,7 @@ class UsersController{
 
       const comparedPassword = await bcrypt.compare(password, userData.password);
       if(!comparedPassword) res.status(401).send('Invalid information');
-      const token = jwtAuthenticationService.JWTIssuer({user: user.id}, '15 min');
+      const token = jwtAuthenticationService.JWTIssuer({user: userData.id}, '15 min');
       res.status(200).json({ token: token })
     } catch (err) {
       next(err)
