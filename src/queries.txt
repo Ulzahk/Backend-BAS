@@ -1,4 +1,4 @@
-// Create Table
+// Create Table users
 CREATE TABLE users (
  id uuid NOT NULL PRIMARY KEY,
  username varchar(255) NOT NULL UNIQUE,
@@ -6,6 +6,17 @@ CREATE TABLE users (
  email varchar(255) NOT NULL UNIQUE,
  full_name varchar(255) NOT NULL,
  confirmed_email boolean
+)
+
+// Create table cards
+CREATE TABLE cards(
+  id uuid NOT NULL PRIMARY KEY,
+  user_id uuid NOT NULL,
+  card_name varchar(255) NOT NULL,
+  card_image varchar(255) NOT NULL,
+  description varchar NOT NULL,
+  price varchar(255) NOT NULL,
+  CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id)
 )
 
 // Select all recors in users table
@@ -17,6 +28,16 @@ SELECT * FROM users WHERE user_id=1
 // Create an user record
 INSERT INTO users(id, username, password, email, full_name, confirmed_email) VALUES 
 ('34e3b35c-0369-45b3-89be-5777d960e670', 'peperamirez', '123456*', 'peper@gmail.com', 'Pepe Ramirez', false )
+
+// Create a card record
+INSERT INTO cards(id, user_id, card_name, card_image, description, price) VALUES (
+  '6908e154-5093-11eb-ae93-0242ac130002',
+  '811147d3-be30-43c2-a908-800d15bab596',
+  'A New Feline Goal For This Year',
+  'https://www.pexels.com/es-es/foto/adorable-animal-aterciopelado-atigrado-617278/',
+  'Text...',
+  '40.30'
+)
 
 // Update an user record
 UPDATE users 

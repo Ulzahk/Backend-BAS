@@ -2,7 +2,6 @@ const { client } = require('../../config/database');
 const { v4: uuid }  = require('uuid');
 const bcrypt = require('bcrypt');
 
-
 class UsersService {
   constructor(){
     this.table = 'users',
@@ -50,11 +49,20 @@ class UsersService {
     }
   }
 
-  async getUserByEmail({ email }){
+  async getUserByEmail({ user }){
     try {
-      const lowerCaseEmail = email.toLowerCase()
-      const user = await client.query(`SELECT * FROM ${this.table} WHERE email='${lowerCaseEmail}'`)
-      return user.rows[0] || [];
+      const lowerCaseEmail = user.toLowerCase()
+      const userData = await client.query(`SELECT * FROM ${this.table} WHERE email='${lowerCaseEmail}'`)
+      return userData.rows[0] || [];
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async getUserByUsername({ user }){
+    try {
+      const userData = await client.query(`SELECT * FROM ${this.table} WHERE username='${user}'`)
+      return userData.rows[0] || [];
     } catch (err) {
       console.error(err)
     }
@@ -71,17 +79,17 @@ class UsersService {
         WHERE id='${userId}'`
       )
       return userUpdated.rowCount
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
     }
   }
 
   async deleteUser({ userId }){
     try {
       const userDeleted = await client.query(`DELETE FROM ${this.table} WHERE id='${userId}'`)
-      return userDeleted.rowCount
-    } catch (error) {
-      console.error(error)
+      return userDeleted.rowCount;
+    } catch (err) {
+      console.error(err);
     }
   }
 }

@@ -5,6 +5,7 @@ const cors = require('cors')
 const { port } = require('./config/env-variables');
 const userAPI = require('./api/routes/UsersRoutes');
 const authAPI = require('./api/routes/AuthRoutes');
+const cardAPI = require('./api/routes/CardsRoutes');
 
 // API
 const api = express()
@@ -21,6 +22,7 @@ api.use(cors())
 // Routes
 userAPI(api);
 authAPI(api);
+cardAPI(api);
 api.get('/', (req, res) => {
   res.send(`
   <div style="text-align: center;">
