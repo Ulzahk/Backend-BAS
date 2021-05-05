@@ -17,24 +17,7 @@ database.connection()
 api.use(express.json({ extended: true, limit: '5mb' }))
 
 // Cors
-const whiteList = [
-  'https://frontend-bas-ulzahk-git-development-ulzahk.vercel.app/',
-  'https://frontend-bas-ulzahk.vercel.app/',
-  'https://backend-bas-ulzahk.vercel.app/',
-  'http://localhost:7400',
-  'http://localhost:3500',
-]
-const corsOptions = {
-  origin:  (origin, callback) => {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
-api.use(cors(corsOptions))
+api.use(cors())
 
 // Routes
 userAPI(api);
