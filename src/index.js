@@ -19,11 +19,11 @@ api.use(express.json({ extended: true, limit: '5mb' }))
 // Cors
 const whiteList = [
   'https://frontend-bas-ulzahk-git-development-ulzahk.vercel.app/',
-  'https://frontend-bas-ulzahk.vercel.app/',
+  'https://frontend-bas-ulzahk.vercel.app/'
 ]
 const corsOptions = {
   origin:  (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whiteList.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
